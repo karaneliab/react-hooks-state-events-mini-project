@@ -9,17 +9,25 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
   const [selectedCategory,setSelectedCategory] = useState("All")
-  
+  const [tasks, setTasks] = useState([
+    { text: "Buy groceries", category: "Shopping" },
+    { text: "Read a book", category: "Personal" },
+  ]);
 function handleCategoryChange(category){
   setSelectedCategory(category)
+}
+ const categories = ["All","Code","Food","Money","Misc"]
+function handleRemoveTask(taskText) {
+  setTasks((currentTasks) => currentTasks.filter((task) => task.text !== taskText));
 }
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter  categories={CATEGORIES} selectedCategory={selectedCategory} onChangeSelectedCategory ={handleCategoryChange}/>
-      <NewTaskForm />
-      <TaskList tasks={TASKS} selectedCategory={selectedCategory}/>
+      
+      <CategoryFilter onSelectedCategory={handleCategoryChange}categories={CATEGORIES} selectedCategory={selectedCategory}  />
+      <NewTaskForm categories={categories}/>
+      <TaskList   onRemoveTask={handleRemoveTask} tasks={TASKS} selectedCategory={selectedCategory}/>
     </div>
   );
 }

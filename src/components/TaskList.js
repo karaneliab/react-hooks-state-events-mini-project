@@ -4,6 +4,9 @@ function TaskList({tasks,selectedCategory}) {
   const filteredTasks = selectedCategory === "All" ? tasks : tasks.filter((task) => 
   task.category === selectedCategory
   )
+
+
+  
   return (
     <div className="tasks">
       {/* display a list of tasks using Task component */}
@@ -13,6 +16,6 @@ function TaskList({tasks,selectedCategory}) {
    
     </div>
   );
-}
 
+  }
 export default TaskList;
