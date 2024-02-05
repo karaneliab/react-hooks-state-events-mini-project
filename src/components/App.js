@@ -20,13 +20,16 @@ function handleCategoryChange(category){
 function handleRemoveTask(taskText) {
   setTasks((currentTasks) => currentTasks.filter((task) => task.text !== taskText));
 }
-
+const handleTaskFormSubmit = (newTask) => {
+  // Update the list of tasks with the new task
+  setTasks((prevTasks) => [...prevTasks, newTask]);
+};
   return (
     <div className="App">
       <h2>My tasks</h2>
       
       <CategoryFilter onSelectedCategory={handleCategoryChange}categories={CATEGORIES} selectedCategory={selectedCategory}  />
-      <NewTaskForm categories={categories}/>
+      <NewTaskForm  onTaskFormSubmit={handleTaskFormSubmit} categories={categories}/>
       <TaskList   onRemoveTask={handleRemoveTask} tasks={TASKS} selectedCategory={selectedCategory}/>
     </div>
   );
